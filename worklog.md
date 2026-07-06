@@ -83,3 +83,21 @@ Stage Summary:
 - Resume PDF served from /public/resume.pdf with both View and Download buttons
 - All browser verification tests passed successfully
 
+
+---
+Task ID: 2
+Agent: Main Agent
+Task: Rebuild portfolio using only HTML, CSS, and JavaScript (no React/TypeScript)
+
+Work Log:
+- Created /public/portfolio.html — a single 937-line file with embedded CSS and JS
+- CSS: 400+ lines of pure CSS with custom properties, 15+ keyframe animations, glassmorphism, dark/light themes, responsive breakpoints
+- JS: 200+ lines of vanilla JavaScript — typing effect, particle canvas, cursor glow, scroll animations, theme toggle, project filtering, contact form, mobile menu
+- Fixed middleware to use NextResponse.rewrite() to serve portfolio.html at root (edge runtime compatible)
+- Browser verified: all 8 sections render, theme toggle works, contact form works, zero console errors
+
+Stage Summary:
+- Pure HTML/CSS/JS portfolio at /public/portfolio.html (937 lines)
+- Served at / via middleware rewrite
+- No React, no TypeScript, no frameworks — just HTML5, CSS3, vanilla JS (ES6+)
+- All features working: particles, typing effect, dark/light mode, scroll animations, project filter, responsive hamburger menu, back-to-top, loading screen
