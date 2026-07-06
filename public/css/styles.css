@@ -188,7 +188,7 @@ section{position:relative;z-index:2;padding:120px 0}
 .skill-tags{display:flex;flex-wrap:wrap;gap:8px}
 .skill-tag{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:10px;border:1px solid var(--glass-b);background:var(--glass);font-size:.88rem;font-weight:500;transition:all .25s;cursor:default}
 .skill-tag:hover{border-color:var(--blue);background:rgba(59,130,246,.06);transform:translateY(-2px)}
-.skill-tag .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.skill-tag .dot{display:none}
 
 /* ════════════ PROJECTS ════════════ */
 .filters{display:flex;gap:8px;margin-bottom:36px;flex-wrap:wrap}
