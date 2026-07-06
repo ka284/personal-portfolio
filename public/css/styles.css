@@ -188,7 +188,7 @@ section{position:relative;z-index:2;padding:120px 0}
 .skill-tags{display:flex;flex-wrap:wrap;gap:8px}
 .skill-tag{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:10px;border:1px solid var(--glass-b);background:var(--glass);font-size:.88rem;font-weight:500;transition:all .25s;cursor:default}
 .skill-tag:hover{border-color:var(--blue);background:rgba(59,130,246,.06);transform:translateY(-2px)}
-.skill-tag .e{font-size:1.15rem;line-height:1}
+.skill-tag .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 
 /* ════════════ PROJECTS ════════════ */
 .filters{display:flex;gap:8px;margin-bottom:36px;flex-wrap:wrap}
@@ -219,7 +219,7 @@ section{position:relative;z-index:2;padding:120px 0}
 .certs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 @media(max-width:768px){.certs-grid{grid-template-columns:1fr}}
 .cert-card{display:flex;align-items:center;gap:16px;padding:22px 20px}
-.cert-icon{font-size:1.6rem;width:48px;text-align:center;flex-shrink:0}
+.cert-icon{width:48px;height:48px;border-radius:14px;background:rgba(59,130,246,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--blue)}
 .cert-card h3{font-size:.95rem;font-weight:600;line-height:1.35;margin-bottom:2px}
 .cert-card p{color:var(--t3);font-size:.82rem}
 
@@ -227,7 +227,9 @@ section{position:relative;z-index:2;padding:120px 0}
 .ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:56px}
 @media(max-width:768px){.ach-grid{grid-template-columns:1fr}}
 .ach-card{text-align:center;padding:32px 24px}
-.ach-emoji{font-size:2.6rem;margin-bottom:16px;display:inline-block;animation:float 5s ease-in-out infinite}
+.ach-icon{width:60px;height:60px;border-radius:18px;background:rgba(59,130,246,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--blue);animation:float 5s ease-in-out infinite}
+.ach-icon-green{background:rgba(34,197,94,.1);color:#22c55e}
+.ach-icon-amber{background:rgba(245,158,11,.1);color:#f59e0b}
 .ach-card h3{font-size:1.05rem;font-weight:600;margin-bottom:8px}
 .ach-card p{color:var(--t2);font-size:.9rem;line-height:1.65}
 .profiles-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:720px;margin:0 auto}
@@ -240,7 +242,7 @@ section{position:relative;z-index:2;padding:120px 0}
 /* ════════════ RESUME ════════════ */
 .resume-wrap{max-width:560px;margin:0 auto}
 .resume-card{padding:48px 36px;text-align:center}
-.resume-icon{width:64px;height:64px;border-radius:18px;background:rgba(59,130,246,.08);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:1.6rem}
+.resume-icon{width:64px;height:64px;border-radius:18px;background:rgba(59,130,246,.08);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;color:var(--blue)}
 .resume-card h3{font-size:1.3rem;font-weight:600;margin-bottom:6px}
 .resume-sub{color:var(--t2);font-size:.95rem;margin-bottom:4px}
 .resume-school{color:var(--t3);font-size:.88rem;margin-bottom:32px}
