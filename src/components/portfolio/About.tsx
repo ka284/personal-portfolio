@@ -1,280 +1,234 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
-const EDUCATION = [
-  {
-    degree: 'B.Tech in Computer Science Engineering',
-    institution: 'Sreenidhi Institute of Science and Technology',
-    duration: '2022 – 2026',
-    cgpa: '8.2 CGPA',
-  },
-  {
-    degree: 'Intermediate (MPC)',
-    institution: 'Sri Chaitanya Junior College',
-    duration: '2020 – 2022',
-    cgpa: '95%',
-  },
-  {
-    degree: 'SSC (10th Standard)',
-    institution: 'Zilla Parishad High School',
-    duration: '2020',
-    cgpa: '9.5 GPA',
-  },
-];
-
-function useScrollAnimate() {
+function useInView() {
   const ref = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-            observer.unobserve(entry.target);
-          }
-        });
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.querySelectorAll(".scroll-animate").forEach((child) =>
+            child.classList.add("animate-in")
+          );
+        }
       },
-      { threshold: 0.1 }
+      { threshold: 0.15 }
     );
-    el.querySelectorAll('[data-animate]').forEach((child) => observer.observe(child));
-    return () => observer.disconnect();
+    obs.observe(el);
+    return () => obs.disconnect();
   }, []);
-
   return ref;
 }
 
+const education = [
+  {
+    title: "B.Tech in Computer Science and Engineering",
+    place: "Vardhaman College of Engineering",
+    period: "2023 – 2027",
+    gpa: "7.3",
+  },
+  {
+    title: "Intermediate (MPC)",
+    place: "Geetha Junior College",
+    period: "2021 – 2023",
+    gpa: "8.92",
+  },
+  {
+    title: "SSC",
+    place: "Sri Saraswathi Convent High School",
+    period: "2020 – 2021",
+    gpa: "10",
+  },
+];
+
 export default function About() {
-  const containerRef = useScrollAnimate();
+  const ref = useInView();
 
   return (
-    <section
-      id="about"
-      style={{ padding: 'var(--section-padding)' }}
-      ref={containerRef}
-    >
-      <div className="section-container">
-        <h2 className="section-title gradient-underline" data-animate>About Me</h2>
-        <p className="section-subtitle" data-animate>
-          Get to know more about me, my background, and my journey in Computer Science.
+    <section id="about" className="section-padding" style={{ position: "relative", zIndex: 2 }}>
+      <div className="section-container" ref={ref}>
+        <h2 className="section-title scroll-animate">
+          About <span className="highlight gradient-text">Me</span>
+        </h2>
+        <p className="section-subtitle scroll-animate stagger-1">
+          Get to know me better
         </p>
 
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: 60,
-            alignItems: 'center',
-            marginBottom: 80,
+            display: "grid",
+            gridTemplateColumns: "1fr 1.6fr",
+            gap: 50,
+            alignItems: "start",
           }}
+          className="about-grid"
         >
-          {/* Profile Image */}
-          <div data-animate="left" style={{ display: 'flex', justifyContent: 'center' }}>
+          {/* Profile image */}
+          <div className="scroll-animate animate-left stagger-2" style={{ display: "flex", justifyContent: "center" }}>
             <div
               style={{
-                position: 'relative',
-                width: 280,
-                height: 280,
-                borderRadius: '50%',
+                width: 260,
+                height: 260,
+                borderRadius: "50%",
                 padding: 4,
-                background: 'linear-gradient(135deg, #4f8fff, #8b5cf6)',
-                flexShrink: 0,
+                background: "var(--gradient-primary)",
+                animation: "glow 3s ease-in-out infinite",
               }}
             >
-              <div
+              <img
+                src="/images/profile.png"
+                alt="Kethavath Anil"
+                loading="lazy"
                 style={{
-                  width: '100%',
-                  height: '100%',
-                  borderRadius: '50%',
-                  overflow: 'hidden',
-                  border: '4px solid var(--bg-primary)',
-                }}
-              >
-                <img
-                  src="/images/profile.png"
-                  alt="Kethavath Anil profile photo"
-                  loading="lazy"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-              </div>
-              {/* Decorative ring */}
-              <div
-                aria-hidden="true"
-                style={{
-                  position: 'absolute',
-                  inset: -15,
-                  borderRadius: '50%',
-                  border: '1px dashed rgba(79,143,255,0.3)',
-                  animation: 'spin 20s linear infinite',
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                  border: "4px solid var(--bg-primary)",
                 }}
               />
             </div>
           </div>
 
-          {/* Text Content */}
-          <div data-animate="right">
-            <h3
-              style={{
-                fontSize: '1.5rem',
-                fontWeight: 700,
-                marginBottom: 16,
-                color: 'var(--text-primary)',
-              }}
-            >
-              I&apos;m Kethavath Anil, a{' '}
-              <span className="gradient-text">CS Undergraduate</span>
-            </h3>
+          {/* Text */}
+          <div className="scroll-animate animate-right stagger-2">
             <p
               style={{
-                color: 'var(--text-secondary)',
+                color: "var(--text-secondary)",
+                fontSize: "1rem",
                 lineHeight: 1.8,
-                fontSize: '0.95rem',
                 marginBottom: 16,
               }}
             >
-              I am a dedicated Computer Science Engineering student with a strong passion for
-              web development, problem solving, and creating impactful digital solutions. With
-              a solid foundation in programming and emerging technologies, I continuously
-              expand my skill set through hands-on projects and certifications.
+              I&apos;m a <strong style={{ color: "var(--text-primary)" }}>Computer Science undergraduate</strong> at
+              Vardhaman College of Engineering, passionate about{" "}
+              <strong style={{ color: "var(--text-primary)" }}>Web Development, UI/UX Design, Python, and Django</strong>.
             </p>
             <p
               style={{
-                color: 'var(--text-secondary)',
+                color: "var(--text-secondary)",
+                fontSize: "1rem",
                 lineHeight: 1.8,
-                fontSize: '0.95rem',
-                marginBottom: 24,
+                marginBottom: 16,
               }}
             >
-              My expertise spans front-end development, Python programming, IoT systems, and
-              UI/UX design. I believe in the power of technology to transform ideas into
-              reality and am always eager to take on new challenges that push the boundaries
-              of innovation.
+              I love building <strong style={{ color: "var(--text-primary)" }}>secure, responsive, and user-friendly web applications</strong>.
+              I&apos;m interested in solving real-world problems through software.
             </p>
-
-            {/* Quick Stats */}
-            <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap' }}>
-              {[
-                { value: '4+', label: 'Projects' },
-                { value: '5+', label: 'Certifications' },
-                { value: '1', label: 'Patent' },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <div
-                    className="gradient-text"
-                    style={{ fontSize: '1.8rem', fontWeight: 700, lineHeight: 1.2 }}
-                  >
-                    {stat.value}
-                  </div>
-                  <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <p
+              style={{
+                color: "var(--text-secondary)",
+                fontSize: "1rem",
+                lineHeight: 1.8,
+              }}
+            >
+              Currently exploring full-stack development and expanding my skills
+              in cloud computing and cybersecurity.
+            </p>
           </div>
         </div>
 
         {/* Education Timeline */}
-        <div>
+        <div style={{ marginTop: 70 }}>
           <h3
-            className="gradient-underline"
+            className="scroll-animate"
             style={{
-              fontSize: '1.5rem',
+              textAlign: "center",
+              fontSize: "1.5rem",
               fontWeight: 700,
-              textAlign: 'center',
-              marginBottom: 48,
-              color: 'var(--text-primary)',
-              display: 'inline-block',
-              width: '100%',
+              marginBottom: 40,
             }}
           >
-            Education
+            Education <span className="gradient-text">Timeline</span>
           </h3>
-
-          <div style={{ position: 'relative', maxWidth: 700, margin: '0 auto' }}>
-            {/* Vertical Line */}
+          <div
+            style={{
+              position: "relative",
+              maxWidth: 700,
+              margin: "0 auto",
+            }}
+          >
+            {/* Vertical line */}
             <div
-              aria-hidden="true"
               style={{
-                position: 'absolute',
-                left: 20,
+                position: "absolute",
+                left: 24,
                 top: 0,
                 bottom: 0,
                 width: 2,
-                background: 'linear-gradient(180deg, #4f8fff, #8b5cf6)',
-                borderRadius: 1,
+                background: "var(--gradient-primary)",
+                opacity: 0.4,
               }}
             />
-
-            {EDUCATION.map((edu, i) => (
+            {education.map((item, i) => (
               <div
                 key={i}
-                data-animate
-                className={`stagger-${i + 1}`}
+                className={`scroll-animate animate-left stagger-${i + 1}`}
                 style={{
-                  display: 'flex',
+                  display: "flex",
                   gap: 24,
-                  marginBottom: i < EDUCATION.length - 1 ? 40 : 0,
-                  alignItems: 'flex-start',
+                  marginBottom: 36,
+                  position: "relative",
                 }}
               >
                 {/* Dot */}
                 <div
-                  aria-hidden="true"
                   style={{
-                    width: 42,
-                    height: 42,
-                    borderRadius: '50%',
-                    background: 'linear-gradient(135deg, #4f8fff, #8b5cf6)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    width: 50,
+                    height: 50,
+                    borderRadius: "50%",
+                    background: "var(--gradient-primary)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#fff",
+                    fontSize: "1.1rem",
+                    fontWeight: 700,
                     flexShrink: 0,
-                    boxShadow: '0 0 20px rgba(79,143,255,0.3)',
+                    zIndex: 1,
+                    boxShadow: "0 4px 20px rgba(79,143,255,0.3)",
                   }}
                 >
-                  <span style={{ color: '#fff', fontSize: '0.75rem', fontWeight: 700 }}>
-                    {i + 1}
-                  </span>
+                  {i + 1}
                 </div>
-
-                {/* Content Card */}
-                <div className="glass-card" style={{ padding: 24, flex: 1 }}>
+                {/* Card */}
+                <div
+                  className="glass-card"
+                  style={{ flex: 1, padding: "20px 24px" }}
+                >
                   <h4
                     style={{
-                      fontSize: '1.05rem',
+                      fontSize: "1.05rem",
                       fontWeight: 600,
                       marginBottom: 4,
-                      color: 'var(--text-primary)',
                     }}
                   >
-                    {edu.degree}
+                    {item.title}
                   </h4>
                   <p
                     style={{
-                      color: 'var(--accent-blue)',
-                      fontSize: '0.9rem',
+                      color: "var(--accent-blue)",
+                      fontSize: "0.9rem",
                       fontWeight: 500,
                       marginBottom: 4,
                     }}
                   >
-                    {edu.institution}
+                    {item.place}
                   </p>
                   <div
                     style={{
-                      display: 'flex',
+                      display: "flex",
                       gap: 16,
-                      color: 'var(--text-secondary)',
-                      fontSize: '0.85rem',
+                      color: "var(--text-muted)",
+                      fontSize: "0.85rem",
                     }}
                   >
-                    <span>{edu.duration}</span>
-                    <span style={{ color: 'var(--accent-purple)', fontWeight: 600 }}>
-                      {edu.cgpa}
-                    </span>
+                    <span>{item.period}</span>
+                    <span>•</span>
+                    <span>CGPA: {item.gpa}</span>
                   </div>
                 </div>
               </div>
@@ -282,6 +236,19 @@ export default function About() {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .about-grid {
+            grid-template-columns: 1fr !important;
+            gap: 30px !important;
+            text-align: center;
+          }
+          .about-grid > .scroll-animate {
+            justify-content: center;
+          }
+        }
+      `}</style>
     </section>
   );
 }

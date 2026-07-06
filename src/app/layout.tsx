@@ -5,28 +5,30 @@ import "./globals.css";
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Kethavath Anil | Portfolio",
   description:
-    "Computer Science Engineering student portfolio showcasing projects, skills, certifications, and achievements in web development, Python, and IoT.",
+    "Personal portfolio of Kethavath Anil - Computer Science Engineering student, Front-End Developer, UI/UX Designer, and Python Developer. Explore my projects, skills, and achievements.",
   keywords: [
     "Kethavath Anil",
     "Portfolio",
     "Computer Science",
     "Web Developer",
-    "Python Developer",
-    "UI/UX Designer",
     "Front-End Developer",
+    "UI/UX Designer",
+    "Python Developer",
+    "Django",
+    "React",
   ],
   authors: [{ name: "Kethavath Anil" }],
   openGraph: {
     title: "Kethavath Anil | Portfolio",
     description:
-      "Computer Science Engineering student portfolio showcasing projects, skills, and achievements.",
+      "Computer Science Engineering student passionate about web development and design.",
     type: "website",
   },
 };
@@ -37,14 +39,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})()`,
-          }}
-        />
-      </head>
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <body className={`${poppins.variable} antialiased`}>{children}</body>
     </html>
   );

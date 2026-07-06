@@ -1,208 +1,138 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
-const SKILL_CATEGORIES = [
+function useInView() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.querySelectorAll(".scroll-animate").forEach((child, i) => {
+            setTimeout(() => child.classList.add("animate-in"), i * 60);
+          });
+        }
+      },
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return ref;
+}
+
+const categories = [
   {
-    title: 'Languages',
+    title: "Languages",
     skills: [
-      { name: 'HTML', emoji: '🟧', level: 90 },
-      { name: 'CSS', emoji: '🟦', level: 85 },
-      { name: 'JavaScript', emoji: '🟨', level: 80 },
-      { name: 'Python', emoji: '🐍', level: 85 },
-      { name: 'SQL', emoji: '🗃️', level: 75 },
-      { name: 'Bash', emoji: '💻', level: 70 },
+      { name: "HTML", icon: "🟧", color: "#e34f26" },
+      { name: "CSS", icon: "🟦", color: "#1572b6" },
+      { name: "JavaScript", icon: "🟨", color: "#f7df1e" },
+      { name: "Python", icon: "🐍", color: "#3776ab" },
+      { name: "SQL", icon: "🗃️", color: "#00758f" },
+      { name: "Bash", icon: "💻", color: "#4eaa25" },
     ],
   },
   {
-    title: 'Frameworks & Libraries',
+    title: "Frameworks",
     skills: [
-      { name: 'Django', emoji: '🐍', level: 70 },
-      { name: 'React', emoji: '⚛️', level: 75 },
-      { name: 'Next.js', emoji: '▲', level: 70 },
+      { name: "Django", icon: "🐍", color: "#092e20" },
     ],
   },
   {
-    title: 'Tools & Platforms',
+    title: "Tools",
     skills: [
-      { name: 'Git', emoji: '🔀', level: 80 },
-      { name: 'GitHub', emoji: '🐙', level: 85 },
-      { name: 'VS Code', emoji: '💎', level: 90 },
-      { name: 'Figma', emoji: '🎨', level: 75 },
-      { name: 'Arduino', emoji: '🔌', level: 70 },
+      { name: "Git", icon: "🔀", color: "#f05032" },
+      { name: "GitHub", icon: "🐙", color: "#6e40c9" },
+      { name: "VS Code", icon: "💎", color: "#007acc" },
+      { name: "Figma", icon: "🎨", color: "#f24e1e" },
     ],
   },
   {
-    title: 'Soft Skills',
+    title: "Soft Skills",
     skills: [
-      { name: 'Problem Solving', emoji: '🧩', level: 90 },
-      { name: 'Teamwork', emoji: '🤝', level: 85 },
-      { name: 'Communication', emoji: '💬', level: 80 },
-      { name: 'Creativity', emoji: '💡', level: 85 },
+      { name: "Problem Solving", icon: "🧩", color: "#4f8fff" },
+      { name: "Teamwork", icon: "🤝", color: "#8b5cf6" },
+      { name: "Communication", icon: "💬", color: "#06b6d4" },
+      { name: "Creativity", icon: "💡", color: "#f59e0b" },
     ],
   },
 ];
 
 export default function Skills() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    el.querySelectorAll('[data-animate]').forEach((child) => observer.observe(child));
-    return () => observer.disconnect();
-  }, []);
+  const ref = useInView();
 
   return (
-    <section
-      id="skills"
-      style={{ padding: 'var(--section-padding)' }}
-      ref={sectionRef}
-    >
-      <div className="section-container">
-        <h2 className="section-title gradient-underline" data-animate>Skills & Expertise</h2>
-        <p className="section-subtitle" data-animate>
-          A diverse skill set spanning programming, tools, and interpersonal abilities.
+    <section id="skills" className="section-padding" style={{ position: "relative", zIndex: 2 }}>
+      <div className="section-container" ref={ref}>
+        <h2 className="section-title scroll-animate">
+          My <span className="highlight gradient-text">Skills</span>
+        </h2>
+        <p className="section-subtitle scroll-animate stagger-1">
+          Technologies &amp; tools I work with
         </p>
 
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
             gap: 24,
           }}
         >
-          {SKILL_CATEGORIES.map((cat, catIdx) => (
+          {categories.map((cat) => (
             <div
               key={cat.title}
-              data-animate
-              className={`stagger-${catIdx + 1} glass-card`}
-              style={{
-                padding: 28,
-                background: 'var(--glass-bg)',
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)',
-                border: '1px solid var(--glass-border)',
-                borderRadius: 16,
-                transition: 'all 0.3s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-5px)';
-                e.currentTarget.style.borderColor = 'rgba(79,143,255,0.3)';
-                e.currentTarget.style.boxShadow = '0 20px 40px rgba(79,143,255,0.1)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = 'var(--glass-border)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
+              className="glass-card scroll-animate animate-zoom"
+              style={{ padding: "28px 24px" }}
             >
               <h3
                 style={{
-                  fontSize: '1.1rem',
+                  fontSize: "1.1rem",
                   fontWeight: 600,
                   marginBottom: 20,
-                  color: 'var(--text-primary)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 8,
+                  color: "var(--accent-blue)",
                 }}
               >
-                <span
-                  style={{
-                    width: 4,
-                    height: 20,
-                    background: 'linear-gradient(180deg, #4f8fff, #8b5cf6)',
-                    borderRadius: 2,
-                    display: 'inline-block',
-                  }}
-                />
                 {cat.title}
               </h3>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 12,
+                }}
+              >
                 {cat.skills.map((skill) => (
                   <div
                     key={skill.name}
                     style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 12,
-                      padding: '8px 12px',
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 8,
+                      padding: "8px 16px",
                       borderRadius: 10,
-                      transition: 'all 0.3s ease',
-                      cursor: 'default',
+                      border: "1px solid var(--glass-border)",
+                      background: "var(--glass-bg)",
+                      fontSize: "0.88rem",
+                      fontWeight: 500,
+                      transition: "all 0.3s ease",
+                      cursor: "default",
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.background = 'var(--glass-bg-hover)';
-                      e.currentTarget.style.transform = 'scale(1.02)';
+                      e.currentTarget.style.borderColor = skill.color + "60";
+                      e.currentTarget.style.boxShadow = `0 4px 20px ${skill.color}20`;
+                      e.currentTarget.style.transform = "translateY(-3px)";
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.background = 'transparent';
-                      e.currentTarget.style.transform = 'scale(1)';
+                      e.currentTarget.style.borderColor = "var(--glass-border)";
+                      e.currentTarget.style.boxShadow = "none";
+                      e.currentTarget.style.transform = "translateY(0)";
                     }}
                   >
-                    <span style={{ fontSize: '1.3rem', flexShrink: 0 }} aria-hidden="true">
-                      {skill.emoji}
-                    </span>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                          marginBottom: 4,
-                        }}
-                      >
-                        <span
-                          style={{
-                            fontSize: '0.875rem',
-                            fontWeight: 500,
-                            color: 'var(--text-primary)',
-                          }}
-                        >
-                          {skill.name}
-                        </span>
-                        <span
-                          style={{
-                            fontSize: '0.75rem',
-                            color: 'var(--accent-blue)',
-                            fontWeight: 600,
-                          }}
-                        >
-                          {skill.level}%
-                        </span>
-                      </div>
-                      <div
-                        style={{
-                          height: 4,
-                          background: 'rgba(255,255,255,0.06)',
-                          borderRadius: 2,
-                          overflow: 'hidden',
-                        }}
-                      >
-                        <div
-                          style={{
-                            height: '100%',
-                            width: `${skill.level}%`,
-                            background: 'linear-gradient(90deg, #4f8fff, #8b5cf6)',
-                            borderRadius: 2,
-                            transition: 'width 1s ease',
-                          }}
-                        />
-                      </div>
-                    </div>
+                    <span style={{ fontSize: "1.1rem" }}>{skill.icon}</span>
+                    {skill.name}
                   </div>
                 ))}
               </div>

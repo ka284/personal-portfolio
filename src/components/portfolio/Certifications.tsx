@@ -1,117 +1,126 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
-const CERTIFICATIONS = [
+function useInView() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.querySelectorAll(".scroll-animate").forEach((child, i) => {
+            setTimeout(() => child.classList.add("animate-in"), i * 100);
+          });
+        }
+      },
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return ref;
+}
+
+const certs = [
   {
-    emoji: '📊',
-    name: 'HP Data Science & Analytics',
-    org: 'HP',
+    name: "HP Data Science & Analytics",
+    org: "HP",
+    icon: "📊",
   },
   {
-    emoji: '💻',
-    name: 'Microsoft Web Development with VS Code',
-    org: 'Microsoft',
+    name: "Microsoft Web Development with VS Code",
+    org: "Microsoft",
+    icon: "💻",
   },
   {
-    emoji: '☁️',
-    name: 'AWS Cloud Practitioner Essentials',
-    org: 'Amazon Web Services',
+    name: "AWS Cloud Practitioner Essentials",
+    org: "Amazon Web Services",
+    icon: "☁️",
   },
   {
-    emoji: '🌍',
-    name: 'Cambridge Linguaskill',
-    org: 'Cambridge Assessment',
+    name: "Cambridge Linguaskill",
+    org: "Cambridge Assessment",
+    icon: "🌍",
   },
   {
-    emoji: '🎨',
-    name: 'FreeCodeCamp Responsive Web Design',
-    org: 'FreeCodeCamp',
+    name: "FreeCodeCamp Responsive Web Design",
+    org: "FreeCodeCamp",
+    icon: "🎨",
   },
 ];
 
 export default function Certifications() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    el.querySelectorAll('[data-animate]').forEach((child) => observer.observe(child));
-    return () => observer.disconnect();
-  }, []);
+  const ref = useInView();
 
   return (
-    <section id="certifications" style={{ padding: 'var(--section-padding)' }} ref={sectionRef}>
-      <div className="section-container">
-        <h2 className="section-title gradient-underline" data-animate>Certifications</h2>
-        <p className="section-subtitle" data-animate>
-          Professional certifications that validate my expertise across various domains.
+    <section
+      id="certifications"
+      className="section-padding"
+      style={{ position: "relative", zIndex: 2 }}
+    >
+      <div className="section-container" ref={ref}>
+        <h2 className="section-title scroll-animate">
+          My <span className="highlight gradient-text">Certifications</span>
+        </h2>
+        <p className="section-subtitle scroll-animate stagger-1">
+          Professional credentials and achievements
         </p>
 
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
             gap: 24,
-            maxWidth: 900,
-            margin: '0 auto',
           }}
         >
-          {CERTIFICATIONS.map((cert, i) => (
+          {certs.map((c) => (
             <div
-              key={cert.name}
-              data-animate
-              className={`stagger-${i + 1} glass-card`}
+              key={c.name}
+              className="glass-card scroll-animate animate-zoom"
               style={{
-                padding: 28,
-                textAlign: 'center',
-                cursor: 'default',
-                background: 'var(--glass-bg)',
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)',
-                border: '1px solid var(--glass-border)',
-                borderRadius: 16,
-                transition: 'all 0.3s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-5px)';
-                e.currentTarget.style.borderColor = 'rgba(79,143,255,0.3)';
-                e.currentTarget.style.boxShadow = '0 20px 40px rgba(79,143,255,0.1)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = 'var(--glass-border)';
-                e.currentTarget.style.boxShadow = 'none';
+                padding: "28px 24px",
+                display: "flex",
+                alignItems: "center",
+                gap: 18,
               }}
             >
-              <span style={{ fontSize: '2.5rem', display: 'block', marginBottom: 16 }} aria-hidden="true">
-                {cert.emoji}
-              </span>
-              <h3
+              <div
                 style={{
-                  fontSize: '1rem',
-                  fontWeight: 600,
-                  color: 'var(--text-primary)',
-                  marginBottom: 8,
-                  lineHeight: 1.4,
+                  width: 56,
+                  height: 56,
+                  borderRadius: 14,
+                  background: "rgba(79,143,255,0.1)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "1.6rem",
+                  flexShrink: 0,
                 }}
               >
-                {cert.name}
-              </h3>
-              <p style={{ fontSize: '0.8rem', color: 'var(--accent-blue)', fontWeight: 500 }}>
-                {cert.org}
-              </p>
+                {c.icon}
+              </div>
+              <div>
+                <h3
+                  style={{
+                    fontSize: "1rem",
+                    fontWeight: 600,
+                    marginBottom: 3,
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {c.name}
+                </h3>
+                <p
+                  style={{
+                    color: "var(--text-muted)",
+                    fontSize: "0.85rem",
+                  }}
+                >
+                  {c.org}
+                </p>
+              </div>
             </div>
           ))}
         </div>

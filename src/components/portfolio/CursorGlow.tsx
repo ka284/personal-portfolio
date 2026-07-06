@@ -1,43 +1,55 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useSyncExternalStore } from "react";
+
+function useIsDesktop() {
+  return useSyncExternalStore(
+    (cb) => {
+      const mql = window.matchMedia("(pointer: coarse)");
+      mql.addEventListener("change", cb);
+      return () => mql.removeEventListener("change", cb);
+    },
+    () => !window.matchMedia("(pointer: coarse)").matches,
+    () => true
+  );
+}
 
 export default function CursorGlow() {
   const glowRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const isDesktop = useIsDesktop();
 
   useEffect(() => {
-    // Only show on non-touch devices
-    if (window.matchMedia('(hover: none)').matches) return;
+    if (!isDesktop) return;
 
-    const handleMove = (e: MouseEvent) => {
-      if (!isVisible) setIsVisible(true);
+    const move = (e: MouseEvent) => {
       if (glowRef.current) {
-        glowRef.current.style.left = `${e.clientX}px`;
-        glowRef.current.style.top = `${e.clientY}px`;
+        glowRef.current.style.left = e.clientX + "px";
+        glowRef.current.style.top = e.clientY + "px";
       }
     };
 
-    window.addEventListener('mousemove', handleMove, { passive: true });
-    return () => window.removeEventListener('mousemove', handleMove);
-  }, [isVisible]);
+    window.addEventListener("mousemove", move);
+    return () => window.removeEventListener("mousemove", move);
+  }, [isDesktop]);
 
-  if (!isVisible) return null;
+  if (!isDesktop) return null;
 
   return (
     <div
       ref={glowRef}
       aria-hidden="true"
       style={{
-        position: 'fixed',
-        width: 300,
-        height: 300,
-        background: 'radial-gradient(circle, rgba(79,143,255,0.06) 0%, rgba(139,92,246,0.03) 40%, transparent 70%)',
-        borderRadius: '50%',
-        transform: 'translate(-50%, -50%)',
-        pointerEvents: 'none',
+        position: "fixed",
+        width: 350,
+        height: 350,
+        borderRadius: "50%",
+        background:
+          "radial-gradient(circle, rgba(79,143,255,0.07) 0%, transparent 70%)",
+        pointerEvents: "none",
         zIndex: 1,
-        willChange: 'transform',
+        transform: "translate(-50%, -50%)",
+        willChange: "transform, left, top",
+        transition: "left 0.05s linear, top 0.05s linear",
       }}
     />
   );

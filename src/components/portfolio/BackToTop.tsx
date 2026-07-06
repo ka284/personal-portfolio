@@ -1,63 +1,52 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export default function BackToTop() {
-  const [visible, setVisible] = useState(false);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
-    let ticking = false;
-    const onScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          setVisible(window.scrollY > 300);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const onScroll = () => setShow(window.scrollY > 300);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   return (
     <button
-      onClick={scrollToTop}
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label="Back to top"
       style={{
-        position: 'fixed',
-        bottom: 30,
-        right: 30,
-        width: 48,
-        height: 48,
-        borderRadius: 14,
-        background: 'var(--glass-bg)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        border: '1px solid var(--glass-border)',
-        color: 'var(--accent-blue)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        cursor: 'pointer',
+        position: "fixed",
+        bottom: 28,
+        right: 28,
         zIndex: 40,
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(20px)',
-        transition: 'all 0.3s ease',
-        pointerEvents: visible ? 'auto' : 'none',
-        boxShadow: visible ? '0 8px 24px rgba(79,143,255,0.15)' : 'none',
+        width: 46,
+        height: 46,
+        borderRadius: "50%",
+        border: "1px solid var(--glass-border)",
+        background: "var(--glass-bg)",
+        backdropFilter: "blur(15px)",
+        WebkitBackdropFilter: "blur(15px)",
+        color: "var(--accent-blue)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        cursor: "pointer",
+        opacity: show ? 1 : 0,
+        pointerEvents: show ? "all" : "none",
+        transform: show ? "translateY(0)" : "translateY(20px)",
+        transition: "all 0.3s ease",
+        boxShadow: "0 4px 20px rgba(79,143,255,0.15)",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.background = 'rgba(79,143,255,0.15)';
-        e.currentTarget.style.transform = 'translateY(-3px)';
+        e.currentTarget.style.background = "var(--accent-blue)";
+        e.currentTarget.style.color = "#fff";
+        e.currentTarget.style.borderColor = "var(--accent-blue)";
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.background = 'var(--glass-bg)';
-        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.background = "var(--glass-bg)";
+        e.currentTarget.style.color = "var(--accent-blue)";
+        e.currentTarget.style.borderColor = "var(--glass-border)";
       }}
     >
       <svg
@@ -70,7 +59,8 @@ export default function BackToTop() {
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <polyline points="18 15 12 9 6 15" />
+        <line x1="12" y1="19" x2="12" y2="5" />
+        <polyline points="5 12 12 5 19 12" />
       </svg>
     </button>
   );
