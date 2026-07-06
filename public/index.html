@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kethavath Anil | Portfolio</title>
+  <meta name="description" content="Kethavath Anil — CS Engineer, Front-End Developer, UI/UX Designer, Python Developer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader"><div class="loader-ring"></div><div class="loader-text">Loading portfolio…</div></div>
+
+<!-- EFFECTS -->
+<canvas id="particles"></canvas>
+<div id="cursor-glow"></div>
+<div id="scroll-bar"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="go('home')">KA</div>
+    <div class="nav-links">
+      <button class="nav-link active" data-s="home" onclick="go('home')">Home</button>
+      <button class="nav-link" data-s="about" onclick="go('about')">About</button>
+      <button class="nav-link" data-s="skills" onclick="go('skills')">Skills</button>
+      <button class="nav-link" data-s="projects" onclick="go('projects')">Projects</button>
+      <button class="nav-link" data-s="certifications" onclick="go('certifications')">Certs</button>
+      <button class="nav-link" data-s="achievements" onclick="go('achievements')">More</button>
+      <button class="nav-link" data-s="contact" onclick="go('contact')">Contact</button>
+      <button class="theme-toggle" id="td" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+    </div>
+    <div class="mobile-controls">
+      <button class="theme-toggle" id="tm" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+      <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-nav" id="mob">
+  <button data-s="home" onclick="go('home')">Home</button>
+  <button data-s="about" onclick="go('about')">About</button>
+  <button data-s="skills" onclick="go('skills')">Skills</button>
+  <button data-s="projects" onclick="go('projects')">Projects</button>
+  <button data-s="certifications" onclick="go('certifications')">Certifications</button>
+  <button data-s="achievements" onclick="go('achievements')">Achievements</button>
+  <button data-s="contact" onclick="go('contact')">Contact</button>
+</div>
+
+<main>
+
+<!-- ═══ HERO ═══ -->
+<section id="home">
+  <div class="hero-blob blob-1"></div>
+  <div class="hero-blob blob-2"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge"><span class="dot"></span><span>Available for opportunities</span></div>
+        <h1 class="heading-xl hero-name">Kethavath<br><span class="grad">Anil</span></h1>
+        <div class="hero-role"><span id="typed"></span><span class="cursor-blink"></span></div>
+        <p class="hero-desc">Passionate about crafting secure, responsive, and user-friendly web experiences. Turning real-world problems into elegant digital solutions.</p>
+        <div class="hero-btns">
+          <a href="resume.pdf" download class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download CV
+          </a>
+          <button class="btn btn-ghost" onclick="go('contact')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Contact Me
+          </button>
+        </div>
+        <div class="hero-socials">
+          <a href="#" class="social-btn" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="#" class="social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="#" class="social-btn" aria-label="LeetCode"><svg viewBox="0 0 24 24"><path d="M16.102 17.93l-2.697 2.607-.106.053-.105-.053-5.648-5.482a.538.538 0 010-.77l.928-.9a.533.533 0 01.752 0l4.074 3.952 4.073-3.951a.533.533 0 01.752 0l.928.9a.538.538 0 010 .77zm-4.697-14.467l2.697 2.607.106.053.105-.053 5.648-5.483a.538.538 0 010-.77l-.928-.9a.533.533 0 00-.752 0L16.102 3.62l-4.074-3.952a.533.533 0 00-.752 0l-.928.9a.538.538 0 000 .77z"/></svg></a>
+          <a href="#" class="social-btn" aria-label="HackerRank"><svg viewBox="0 0 24 24"><path d="M12 0L1.75 6v12L12 24l10.25-6V6zm0 2.249L20.25 7v10l-8.25 4.75L3.75 17V7z"/></svg></a>
+        </div>
+      </div>
+      <div class="hero-visual"><img src="images/hero-illustration.png" alt="Developer illustration" loading="eager"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-header anim">
+      <div class="sec-label">About Me</div>
+      <h2 class="sec-title">A bit about <span class="grad">myself</span></h2>
+      <p class="sec-sub">Computer Science undergraduate building modern web experiences.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-img-col anim from-left d1">
+        <div class="about-img-wrap"><img src="images/profile.png" alt="Kethavath Anil"></div>
+      </div>
+      <div class="about-text anim from-right d2">
+        <p>I'm a <strong>Computer Science undergraduate</strong> at Vardhaman College of Engineering, passionate about <strong>Web Development, UI/UX Design, Python, and Django</strong>.</p>
+        <p>I love building <strong>secure, responsive, and user-friendly web applications</strong>. I'm interested in solving real-world problems through software.</p>
+        <p>Currently exploring full-stack development and expanding my skills in cloud computing and cybersecurity.</p>
+      </div>
+    </div>
+    <div class="timeline" style="margin-top:64px">
+      <div class="tl-item anim from-left d1"><div class="tl-dot">1</div><div class="tl-content"><h4>B.Tech in Computer Science and Engineering</h4><p class="tl-place">Vardhaman College of Engineering</p><p class="tl-meta">2023 – 2027 &nbsp;·&nbsp; CGPA: 7.3</p></div></div>
+      <div class="tl-item anim from-left d2"><div class="tl-dot">2</div><div class="tl-content"><h4>Intermediate (MPC)</h4><p class="tl-place">Geetha Junior College</p><p class="tl-meta">2021 – 2023 &nbsp;·&nbsp; CGPA: 8.92</p></div></div>
+      <div class="tl-item anim from-left d3"><div class="tl-dot">3</div><div class="tl-content"><h4>SSC</h4><p class="tl-place">Sri Saraswathi Convent High School</p><p class="tl-meta">2020 – 2021 &nbsp;·&nbsp; CGPA: 10</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SKILLS ═══ -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-header text-center anim">
+      <div class="sec-label">Skills</div>
+      <h2 class="sec-title">Technologies I <span class="grad">work with</span></h2>
+      <p class="sec-sub">Tools and technologies I use to bring ideas to life.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="card skill-card anim from-zoom d1"><h3>Languages</h3><div class="skill-tags">
+        <span class="skill-tag"><span class="e">🟧</span>HTML</span><span class="skill-tag"><span class="e">🟦</span>CSS</span><span class="skill-tag"><span class="e">🟨</span>JavaScript</span><span class="skill-tag"><span class="e">🐍</span>Python</span><span class="skill-tag"><span class="e">🗃️</span>SQL</span><span class="skill-tag"><span class="e">💻</span>Bash</span>
+      </div></div>
+      <div class="card skill-card anim from-zoom d2"><h3>Frameworks</h3><div class="skill-tags"><span class="skill-tag"><span class="e">🐍</span>Django</span></div></div>
+      <div class="card skill-card anim from-zoom d3"><h3>Tools</h3><div class="skill-tags">
+        <span class="skill-tag"><span class="e">🔀</span>Git</span><span class="skill-tag"><span class="e">🐙</span>GitHub</span><span class="skill-tag"><span class="e">💎</span>VS Code</span><span class="skill-tag"><span class="e">🎨</span>Figma</span>
+      </div></div>
+      <div class="card skill-card anim from-zoom d4"><h3>Soft Skills</h3><div class="skill-tags">
+        <span class="skill-tag"><span class="e">🧩</span>Problem Solving</span><span class="skill-tag"><span class="e">🤝</span>Teamwork</span><span class="skill-tag"><span class="e">💬</span>Communication</span><span class="skill-tag"><span class="e">💡</span>Creativity</span>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROJECTS ═══ -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-header text-center anim">
+      <div class="sec-label">Projects</div>
+      <h2 class="sec-title">Featured <span class="grad">work</span></h2>
+      <p class="sec-sub">A selection of projects I've built and contributed to.</p>
+    </div>
+    <div class="filters anim d1">
+      <button class="filter-btn active" data-f="All">All</button>
+      <button class="filter-btn" data-f="Web">Web</button>
+      <button class="filter-btn" data-f="Python">Python</button>
+      <button class="filter-btn" data-f="IoT">IoT</button>
+    </div>
+    <div class="projects-grid">
+      <article class="card project-card anim from-zoom d1" data-cat="Web"><div class="p-img"><img src="images/project-event.png" alt="Event Management System" loading="lazy"></div><div class="p-body"><h3>Event Management System</h3><p class="p-desc">Full-stack event booking platform — organizers create events, users browse and book through a responsive interface.</p><div class="p-tech"><span>HTML</span><span>CSS</span><span>PHP</span><span>MySQL</span></div><ul class="p-features"><li>Event creation</li><li>User booking</li><li>Responsive UI</li><li>Admin panel</li></ul><div class="p-actions"><a href="#" class="btn btn-link">Code</a><a href="#" class="btn btn-primary">Live Demo <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a></div></div></article>
+      <article class="card project-card anim from-zoom d2" data-cat="Python"><div class="p-img"><img src="images/project-steganography.png" alt="Steganography System" loading="lazy"></div><div class="p-body"><h3>Multimedia Steganography</h3><p class="p-desc">Secure steganography app using AES encryption to hide confidential data inside multimedia files.</p><div class="p-tech"><span>Python</span><span>HTML</span><span>CSS</span><span>JS</span><span>AES</span></div><ul class="p-features"><li>AES encryption</li><li>File encoding</li><li>Secure hiding</li><li>User-friendly UI</li></ul><div class="p-actions"><a href="#" class="btn btn-link">Code</a><a href="#" class="btn btn-primary">Live Demo <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a></div></div></article>
+      <article class="card project-card anim from-zoom d3" data-cat="Web"><div class="p-img"><img src="images/project-portfolio.png" alt="Portfolio Website" loading="lazy"></div><div class="p-body"><h3>Portfolio Website</h3><p class="p-desc">Responsive portfolio with modern UI, smooth animations, dark/light mode, and SEO optimization.</p><div class="p-tech"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><ul class="p-features"><li>Dark/Light mode</li><li>Responsive</li><li>Animations</li><li>SEO optimized</li></ul><div class="p-actions"><a href="#" class="btn btn-link">Code</a><a href="#" class="btn btn-primary">Live Demo <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a></div></div></article>
+      <article class="card project-card anim from-zoom d4" data-cat="IoT"><div class="p-img"><img src="images/project-iot.png" alt="Hazard Mitigation System" loading="lazy"></div><div class="p-body"><h3>Autonomous Hazard Mitigation</h3><p class="p-desc">IoT-based lab safety system — detects hazardous conditions and triggers alerts automatically.</p><div class="p-tech"><span>Arduino</span><span>IoT</span><span>Sensors</span></div><ul class="p-features"><li>Real-time detect</li><li>Auto alerts</li><li>Sensor integration</li><li>Safety automation</li></ul><div class="p-actions"><a href="#" class="btn btn-link">Code</a><a href="#" class="btn btn-primary">Live Demo <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a></div></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CERTIFICATIONS ═══ -->
+<section id="certifications">
+  <div class="wrap">
+    <div class="sec-header text-center anim">
+      <div class="sec-label">Certifications</div>
+      <h2 class="sec-title">Professional <span class="grad">credentials</span></h2>
+    </div>
+    <div class="certs-grid">
+      <div class="card cert-card anim from-zoom d1"><div class="cert-icon">📊</div><div><h3>HP Data Science &amp; Analytics</h3><p>HP</p></div></div>
+      <div class="card cert-card anim from-zoom d2"><div class="cert-icon">💻</div><div><h3>Web Development with VS Code</h3><p>Microsoft</p></div></div>
+      <div class="card cert-card anim from-zoom d3"><div class="cert-icon">☁️</div><div><h3>AWS Cloud Practitioner</h3><p>Amazon Web Services</p></div></div>
+      <div class="card cert-card anim from-zoom d4"><div class="cert-icon">🌍</div><div><h3>Cambridge Linguaskill</h3><p>Cambridge Assessment</p></div></div>
+      <div class="card cert-card anim from-zoom d5"><div class="cert-icon">🎨</div><div><h3>Responsive Web Design</h3><p>FreeCodeCamp</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ACHIEVEMENTS ═══ -->
+<section id="achievements">
+  <div class="wrap">
+    <div class="sec-header text-center anim">
+      <div class="sec-label">Achievements</div>
+      <h2 class="sec-title">Things I'm <span class="grad">proud of</span></h2>
+    </div>
+    <div class="ach-grid">
+      <div class="card ach-card anim from-zoom d1"><div class="ach-emoji">🏆</div><h3>Patent Granted</h3><p>Patent for Autonomous Hazard Mitigation System — an IoT-based laboratory safety innovation.</p></div>
+      <div class="card ach-card anim from-zoom d2"><div class="ach-emoji">🟢</div><h3>Active LeetCode Solver</h3><p>Consistently solving problems to sharpen algorithmic and data-structure skills.</p></div>
+      <div class="card ach-card anim from-zoom d3"><div class="ach-emoji">⭐</div><h3>HackerRank Practice</h3><p>Regular practice across multiple languages and problem domains.</p></div>
+    </div>
+    <div class="profiles-grid" style="margin-top:48px">
+      <a href="#" class="card profile-card anim from-zoom d1"><svg viewBox="0 0 24 24" style="width:26px;height:26px;fill:currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg><span class="p-name">GitHub</span><span class="p-visit">Visit →</span></a>
+      <a href="#" class="card profile-card anim from-zoom d2"><svg viewBox="0 0 24 24" style="width:26px;height:26px;fill:currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span class="p-name">LinkedIn</span><span class="p-visit">Visit →</span></a>
+      <a href="#" class="card profile-card anim from-zoom d3"><svg viewBox="0 0 24 24" style="width:26px;height:26px;fill:currentColor"><path d="M16.102 17.93l-2.697 2.607-.106.053-.105-.053-5.648-5.482a.538.538 0 010-.77l.928-.9a.533.533 0 01.752 0l4.074 3.952 4.073-3.951a.533.533 0 01.752 0l.928.9a.538.538 0 010 .77zm-4.697-14.467l2.697 2.607.106.053.105-.053 5.648-5.483a.538.538 0 010-.77l-.928-.9a.533.533 0 00-.752 0L16.102 3.62l-4.074-3.952a.533.533 0 00-.752 0l-.928.9a.538.538 0 000 .77z"/></svg><span class="p-name">LeetCode</span><span class="p-visit">Visit →</span></a>
+      <a href="#" class="card profile-card anim from-zoom d4"><svg viewBox="0 0 24 24" style="width:26px;height:26px;fill:currentColor"><path d="M12 0L1.75 6v12L12 24l10.25-6V6zm0 2.249L20.25 7v10l-8.25 4.75L3.75 17V7z"/></svg><span class="p-name">HackerRank</span><span class="p-visit">Visit →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RESUME ═══ -->
+<section id="resume">
+  <div class="wrap">
+    <div class="sec-header text-center anim">
+      <div class="sec-label">Resume</div>
+      <h2 class="sec-title">My <span class="grad">resume</span></h2>
+    </div>
+    <div class="resume-wrap anim from-zoom d1">
+      <div class="card resume-card">
+        <div class="resume-icon">📄</div>
+        <h3>Kethavath Anil</h3>
+        <p class="resume-sub">B.Tech in Computer Science and Engineering</p>
+        <p class="resume-school">Vardhaman College of Engineering · 2023–2027</p>
+        <div class="resume-preview"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><p>Resume preview</p></div>
+        <div class="resume-btns"><a href="resume.pdf" target="_blank" class="btn btn-ghost">View Resume</a><a href="resume.pdf" download class="btn btn-primary">Download CV</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-header anim">
+      <div class="sec-label">Contact</div>
+      <h2 class="sec-title">Let's <span class="grad">connect</span></h2>
+      <p class="sec-sub">Have a project or opportunity? I'd love to hear from you.</p>
+    </div>
+    <div class="contact-grid">
+      <form class="card contact-form anim from-left d1" id="cform" onsubmit="sendForm(event)">
+        <div class="form-row">
+          <div class="form-group"><label>Your name</label><input class="form-input" type="text" placeholder="John Doe" required></div>
+          <div class="form-group"><label>Email address</label><input class="form-input" type="email" placeholder="john@example.com" required></div>
+        </div>
+        <div class="form-group"><label>Subject</label><input class="form-input" type="text" placeholder="What's this about?" required></div>
+        <div class="form-group"><label>Message</label><textarea class="form-input" rows="5" placeholder="Tell me about your project…" required></textarea></div>
+        <button type="submit" class="btn btn-primary form-submit" id="cbtn">Send Message</button>
+        <div class="form-msg" id="cmsg" style="display:none">Thank you! I'll get back to you soon.</div>
+      </form>
+      <div class="card ci-card anim from-right d2">
+        <h3>Get in touch</h3>
+        <p class="text-sm">I'm always open to discussing new projects, creative ideas, or opportunities to be part of something great.</p>
+        <div class="ci-item"><div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><p class="ci-label">Phone</p><p class="ci-value">+91 XXXXX XXXXX</p></div></div>
+        <div class="ci-item"><div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><p class="ci-label">Email</p><p class="ci-value">anilkethavath@email.com</p></div></div>
+        <div class="ci-item"><div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><p class="ci-label">Location</p><p class="ci-value">Hyderabad, India</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-logo">KA</div>
+    <div class="footer-socials">
+      <a href="#" class="social-btn" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+      <a href="#" class="social-btn" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      <a href="#" class="social-btn" aria-label="LeetCode"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M16.102 17.93l-2.697 2.607-.106.053-.105-.053-5.648-5.482a.538.538 0 010-.77l.928-.9a.533.533 0 01.752 0l4.074 3.952 4.073-3.951a.533.533 0 01.752 0l.928.9a.538.538 0 010 .77zm-4.697-14.467l2.697 2.607.106.053.105-.053 5.648-5.483a.538.538 0 010-.77l-.928-.9a.533.533 0 00-.752 0L16.102 3.62l-4.074-3.952a.533.533 0 00-.752 0l-.928.9a.538.538 0 000 .77z"/></svg></a>
+      <a href="#" class="social-btn" aria-label="HackerRank"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 0L1.75 6v12L12 24l10.25-6V6zm0 2.249L20.25 7v10l-8.25 4.75L3.75 17V7z"/></svg></a>
+    </div>
+    <div class="footer-line"></div>
+    <p class="copy">© <span id="yr"></span> Kethavath Anil. All rights reserved.</p>
+    <p class="credit">Designed &amp; built by <span class="grad">Kethavath Anil</span></p>
+  </div>
+</footer>
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
+
+<script src="js/script.js"></script>
+</body>
+</html>
